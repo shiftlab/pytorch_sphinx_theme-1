@@ -426,7 +426,36 @@
 
   <!-- End Mobile Menu -->
 
+  {% if not embedded %}
+
+     {% if sphinx_version >= "1.8.0" %}
+       <script type="text/javascript" id="documentation_options" data-url_root="{{ pathto('', 1) }}" src="{{ pathto('_static/documentation_options.js', 1) }}"></script>
+       {{ js_tag("_static/jquery.js") }}
+       {{ js_tag("_static/underscore.js") }}
+       {{ js_tag("_static/doctools.js") }}
+     {% else %}
+       <script type="text/javascript">
+           var DOCUMENTATION_OPTIONS = {
+               URL_ROOT:'{{ url_root }}',
+               VERSION:'{{ release|e }}',
+               LANGUAGE:'{{ language }}',
+               COLLAPSE_INDEX:false,
+               FILE_SUFFIX:'{{ '' if no_search_suffix else file_suffix }}',
+               HAS_SOURCE:  {{ has_source|lower }},
+               SOURCELINK_SUFFIX: '{{ sourcelink_suffix }}'
+           };
+       </script>
+       {%- for scriptfile in script_files %}
+         <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+       {%- endfor %}
+     {% endif %}
+
+  {% endif %}
+
+  <script type="text/javascript" src="{{ pathto('_static/js/vendor/popper.min.js', 1) }}"></script>
+  <script type="text/javascript" src="{{ pathto('_static/js/vendor/bootstrap.min.js', 1) }}"></script>
   <script type="text/javascript" src="{{ pathto('_static/js/vendor/anchor.min.js', 1) }}"></script>
+  <script type="text/javascript" src="{{ pathto('_static/js/theme.js', 1) }}"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -443,5 +472,9 @@
       });
     })
   </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/katex.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.9.0/dist/contrib/auto-render.min.js"></script>
+  {{ js_tag("_static/katex_autorenderer.js") }}
 </body>
 </html>
