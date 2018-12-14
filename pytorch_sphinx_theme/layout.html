@@ -262,7 +262,9 @@
      {% if sphinx_version >= "1.8.0" %}
        <script type="text/javascript" id="documentation_options" data-url_root="{{ pathto('', 1) }}" src="{{ pathto('_static/documentation_options.js', 1) }}"></script>
        {%- for scriptfile in script_files %}
-         {{ js_tag(scriptfile) }}
+         {% if "katex" not in scriptfile: %}
+          {{ js_tag(scriptfile) }}
+         {% endif %}
        {%- endfor %}
      {% else %}
        <script type="text/javascript">
@@ -277,7 +279,9 @@
            };
        </script>
        {%- for scriptfile in script_files %}
-         <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+        {% if "katex" not in scriptfile %}
+          <script type="text/javascript" src="{{ pathto(scriptfile, 1) }}"></script>
+         {% endif %}
        {%- endfor %}
      {% endif %}
 
@@ -470,5 +474,11 @@
       });
     })
   </script>
+
+  {%- for scriptfile in script_files %}
+    {% if "katex" in scriptfile: %}
+     {{ js_tag(scriptfile) }}
+    {% endif %}
+  {%- endfor %}
 </body>
 </html>
