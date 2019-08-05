@@ -5,9 +5,9 @@ window.highlightNavigation = {
   sectionIdTonavigationLink: {},
 
   bind: function() {
-    if (!sideMenus.displayRightMenu) {
-      return;
-    };
+    //if (!sideMenus.displayRightMenu) {
+    //  return;
+    //};
 
     for (var i = 0; i < highlightNavigation.sections.length; i++) {
       var id = highlightNavigation.sections[i].id;
