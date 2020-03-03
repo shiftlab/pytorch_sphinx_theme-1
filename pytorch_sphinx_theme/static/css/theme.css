@@ -11071,6 +11071,10 @@ article.pytorch-article .math img {
 .pytorch-breadcrumbs-wrapper .pytorch-breadcrumbs-aside {
   float: right;
 }
+.pytorch-breadcrumbs-wrapper .pytorch-breadcrumbs-aside .fa.fa-github {
+  margin-top: 2px;
+  display: block;
+}
 
 .pytorch-article .container {
   padding-left: 0;
@@ -11938,6 +11942,7 @@ a:hover {
     top: 0;
   }
 }
+
 .main-menu ul li .ecosystem-dropdown, .main-menu ul li .resources-dropdown a {
   cursor: pointer;
 }
