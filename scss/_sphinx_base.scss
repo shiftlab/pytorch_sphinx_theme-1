@@ -1164,6 +1164,20 @@ a:hover {
       background-color: #dee2e6;
     }
   }
+
+  .sort-menu {
+    padding-top: 20px;
+  }
+
+  .tutorials-sort-dropdown ul {
+    list-style-type: none;
+    padding-left: 1.25rem;
+
+    li {
+      padding-right: 1.25rem;
+      word-break: break-all;
+    }
+  }
 }
 
 article.pytorch-article {

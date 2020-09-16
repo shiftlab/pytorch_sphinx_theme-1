@@ -352,3 +352,29 @@ $(document).on("click", ".page", function() {
       'slow'
     );
 });
+
+// Build an array from each level that's present
+
+var levelList = $(".tutorials-card-container").map(function() {
+    return $(this).data("level").split(",").map(function(item) {
+        return item.trim();
+      });
+}).get();
+
+function unique(value, index, self) {
+      return self.indexOf(value) == index && value != ""
+    }
+
+// Only return unique tags
+
+var levels = levelList.sort().filter(unique);
+
+// Add filter buttons to the top of the page for each tag
+
+function createLevelsMenu() {
+    levels.forEach(function(item){
+    $(".tutorials-sort-dropdown ul").append(" <li data-level='" + item + "'>" + item + "</li>")
+  })
+};
+
+createLevelsMenu();
