@@ -1,7 +1,7 @@
 window.filterTags = {
   bind: function() {
     var options = {
-      valueNames: [{ data: ["tags"] }],
+      valueNames: [{ data: ["tags", "level"] }],
       page: "6",
       pagination: true
     };

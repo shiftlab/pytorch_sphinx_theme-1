@@ -386,7 +386,7 @@ article.pytorch-article {
 
     .viewcode-link {
       font-size: rem(14px);
-      color: #979797;
+      color: $mid_gray;
       letter-spacing: 0;
       line-height: rem(24px);
       text-transform: uppercase;
@@ -1102,6 +1102,9 @@ a:hover {
   }
 
   .tutorial-filter-menu {
+    h3.tags-header {
+      margin-top: 0px;
+    }
     ul {
       list-style-type: none;
       padding-left: rem(20px);
@@ -1110,7 +1113,7 @@ a:hover {
         word-break: break-all;
 
         a {
-        color: #979797;
+        color: $mid_gray;
         &:hover {
           color: $orange;
           }
@@ -1124,8 +1127,8 @@ a:hover {
   }
 
   .filter-btn {
-    color: #979797;
-    border: 1px solid #979797;
+    color: $mid_gray;
+    border: 1px solid $mid_gray;
     display: inline-block;
     text-align: center;
     white-space: nowrap;
@@ -1146,10 +1149,10 @@ a:hover {
   }
 
   .all-tag-selected {
-    background-color: #979797;
+    background-color: $mid_gray;
     color: $white;
     &:hover {
-      border-color: #979797;
+      border-color: $mid_gray;
       color: $white;
     }
   }
@@ -1167,6 +1170,9 @@ a:hover {
 
   .sort-menu {
     padding-top: 20px;
+    a {
+      cursor: pointer;
+    }
   }
 
   .tutorials-sort-dropdown ul {
@@ -1176,6 +1182,12 @@ a:hover {
     li {
       padding-right: 1.25rem;
       word-break: break-all;
+      a {
+        color: $mid_gray;
+        &:hover {
+          color: $orange;
+          }
+        }
     }
   }
 }

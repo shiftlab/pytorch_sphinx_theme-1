@@ -373,7 +373,7 @@ var levels = levelList.sort().filter(unique);
 
 function createLevelsMenu() {
     levels.forEach(function(item){
-    $(".tutorials-sort-dropdown ul").append(" <li data-level='" + item + "'>" + item + "</li>")
+    $(".tutorial-level-menu").append(" <div class='tutorial-filter filter-btn filter' data-tag='" + item + "'>" + item + "</div>")
   })
 };
 
