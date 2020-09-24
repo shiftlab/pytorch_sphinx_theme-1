@@ -100,6 +100,10 @@
       a {
         color: $orange;
       }
+
+      .with-down-arrow {
+        background-image: url($baseurl + "/assets/images/chevron-down-orange.svg");
+      }
     }
 
     &:last-of-type {
@@ -109,7 +113,7 @@
 
   ul li a {
     color: $white;
-    font-size: rem(18px);
+    font-size: 1.3rem;
     letter-spacing: 0;
     line-height: rem(34px);
     text-align: center;
@@ -155,7 +159,7 @@
     padding: 0;
   }
 
-  ul li a {
+  ul li a, .resources-mobile-menu-title {
     font-size: rem(32px);
     color: $white;
     letter-spacing: 0;
