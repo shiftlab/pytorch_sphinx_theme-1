@@ -57,5 +57,21 @@ window.filterTags = {
 
       updateList();
     });
+
+    // Filter the tutorial listings based on the selected level
+
+    $(".level-filter-btn").on("click", function () {
+      filterByLevel($(this).data("level"));
+    });
+
+    function filterByLevel(level) {
+      tutorialList.filter(function (item) {
+        if (item.values().level == level) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    }
   }
 };
