@@ -147,69 +147,6 @@ $(function() {
 });
 
 },{}],3:[function(require,module,exports){
-window.filterTags = {
-  bind: function() {
-    var options = {
-      valueNames: [{ data: ["tags"] }],
-      page: "6",
-      pagination: true
-    };
-
-    var tutorialList = new List("tutorial-cards", options);
-
-    function filterSelectedTags(cardTags, selectedTags) {
-      return cardTags.some(function(tag) {
-        return selectedTags.some(function(selectedTag) {
-          return selectedTag == tag;
-        });
-      });
-    }
-
-    function updateList() {
-      var selectedTags = [];
-
-      $(".selected").each(function() {
-        selectedTags.push($(this).data("tag"));
-      });
-
-      tutorialList.filter(function(item) {
-        var cardTags;
-
-        if (item.values().tags == null) {
-          cardTags = [""];
-        } else {
-          cardTags = item.values().tags.split(",");
-        }
-
-        if (selectedTags.length == 0) {
-          return true;
-        } else {
-          return filterSelectedTags(cardTags, selectedTags);
-        }
-      });
-    }
-
-    $(".filter-btn").on("click", function() {
-      if ($(this).data("tag") == "all") {
-        $(this).addClass("all-tag-selected");
-        $(".filter").removeClass("selected");
-      } else {
-        $(this).toggleClass("selected");
-        $("[data-tag='all']").removeClass("all-tag-selected");
-      }
-
-      // If no tags are selected then highlight the 'All' tag
-
-      if (!$(".selected")[0]) {
-        $("[data-tag='all']").addClass("all-tag-selected");
-      }
-
-      updateList();
-    });
-  }
-};
-
-},{}],4:[function(require,module,exports){
 // Modified from https://stackoverflow.com/a/32396543
 window.highlightNavigation = {
   navigationListItems: document.querySelectorAll("#pytorch-right-menu li"),
@@ -282,7 +219,7 @@ window.highlightNavigation = {
   }
 };
 
-},{}],5:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 window.mainMenuDropdown = {
   bind: function() {
     $("[data-toggle='ecosystem-dropdown']").on("click", function() {
@@ -309,7 +246,7 @@ window.mainMenuDropdown = {
   }
 };
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 window.mobileMenu = {
   bind: function() {
     $("[data-behavior='open-mobile-menu']").on('click', function(e) {
@@ -341,7 +278,7 @@ window.mobileMenu = {
   }
 };
 
-},{}],7:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 window.mobileTOC = {
   bind: function() {
     $("[data-behavior='toggle-table-of-contents']").on("click", function(e) {
@@ -362,7 +299,7 @@ window.mobileTOC = {
   }
 }
 
-},{}],8:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 window.pytorchAnchors = {
   bind: function() {
     // Replace Sphinx-generated anchors with anchorjs ones
@@ -382,7 +319,7 @@ window.pytorchAnchors = {
   }
 };
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 // Modified from https://stackoverflow.com/a/13067009
 // Going for a JS solution to scrolling to an anchor so we can benefit from
 // less hacky css and smooth scrolling.
@@ -483,7 +420,7 @@ window.scrollToAnchor = {
   }
 };
 
-},{}],10:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 window.sideMenus = {
   rightMenuIsOnScreen: function() {
     return document.getElementById("pytorch-content-right").offsetParent !== null;
@@ -947,8 +884,8 @@ if (downloadNote.length >= 1) {
 
     var githubLink = "https://github.com/pytorch/tutorials/blob/master/" + tutorialUrlArray.join("/") + ".py",
         notebookLink = $(".reference.download")[1].href,
-        notebookDownloadPath = notebookLink.split('_downloads')[1],
-        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads" + notebookDownloadPath;
+        notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop(),
+        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads/" + notebookDownloadPath;
 
     $("#google-colab-link").wrap("<a href=" + colabLink + " data-behavior='call-to-action-event' data-response='Run in Google Colab' target='_blank'/>");
     $("#download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook'/>");
@@ -957,30 +894,21 @@ if (downloadNote.length >= 1) {
     $(".pytorch-call-to-action-links").hide();
 }
 
-//This code makes the Notes section of the Docs Left Nav collapsible
+$("[data-toggle='resources-dropdown']").hover(function() {
+    toggleDropdown($(this).attr("data-toggle"));
+  });
 
-if ($("p.caption:first").text() == "Notes") {
+  function toggleDropdown(menuToggle) {
+    var showMenuClass = "show-menu";
+    var menuClass = "." + menuToggle + "-menu";
 
-    $("p.caption:first").addClass("left-nav-top-caption");
-    $("span.caption-text:first").after("<span class='expand-menu'>[Expand]</span>");
-    $(".expand-menu").after("<span class='hide-menu'>[Hide]</span>");
-    $("p.caption:first").next("ul").hide();
-
-    $(".expand-menu").on("click", function() {
-        $(".hide-menu").toggle();
-        toggleList(this);
-    });
-
-    $(".hide-menu").on("click", function() {
-        $(".expand-menu").toggle();
-        toggleList(this);
-    });
-
-    function toggleList(menuCommand) {
-        $(menuCommand).toggle();
-        $("p.caption:first").next("ul").toggle();
+    if ($(menuClass).hasClass(showMenuClass)) {
+      $(menuClass).removeClass(showMenuClass);
+    } else {
+      $("[data-toggle=" + menuToggle + "].show-menu").removeClass(showMenuClass);
+      $(menuClass).addClass(showMenuClass);
     }
-}
+  }
 
 // Get the card link from the card's link attribute
 
@@ -1039,4 +967,13 @@ $("#tutorial-cards p").each(function(index, item) {
     }
 });
 
-},{"jquery":"jquery"}]},{},[1,2,3,4,5,6,7,8,9,10,"pytorch-sphinx-theme"]);
+// Jump back to top on pagination click
+
+$(document).on("click", ".page", function() {
+    $('html, body').animate(
+      {scrollTop: $("#dropdown-filter-tags").position().top},
+      'slow'
+    );
+});
+
+},{"jquery":"jquery"}]},{},[1,2,3,4,5,6,7,8,9,"pytorch-sphinx-theme"]);

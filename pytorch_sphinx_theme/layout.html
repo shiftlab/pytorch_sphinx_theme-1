@@ -113,30 +113,32 @@
             <a href="{{ theme_variables.external_urls['docs'] }}">Docs</a>
           </li>
 
-          <li>
+          {% assign resources = "resources, features, hub, community, forums" | split: ", " %}
+
+          <li {% if resources contains current[1] %}active{% endif %}>
             <div id="resourcesDropdownButton" data-toggle="resources-dropdown" class="resources-dropdown">
               <a class="resource-option with-down-arrow">
                 Resources
               </a>
               <div class="resources-dropdown-menu">
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['resources'] }}"">
-                  <span class=dropdown-title>Developer Resources</span>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['resources'] }}">
+                  <span class="dropdown-title">Developer Resources</span>
                   <p>Find resources and get questions answered</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['features'] }}">
-                  <span class=dropdown-title>About</span>
+                  <span class="dropdown-title">About</span>
                   <p>Learn about PyTorch’s features and capabilities</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['hub'] }}">
-                  <span class=dropdown-title>Models (Beta)</span>
+                  <span class="dropdown-title">Models (Beta)</span>
                   <p>Discover, publish, and reuse pre-trained models</p>
                 </a>
-                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community']">
-                  <span class=dropdown-title>Community</span>
+                <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['community'] }}">
+                  <span class="dropdown-title">Community</span>
                   <p>Join the PyTorch developer community to contribute, learn, and get your questions answered.</p>
                 </a>
                 <a class="nav-dropdown-item" href="{{ theme_variables.external_urls['forums'] }}" target="_blank">
-                  <span class=dropdown-title>Forums</span>
+                  <span class="dropdown-title">Forums</span>
                   <p>A place to discuss PyTorch code, issues, install, research</p>
                 </a>
               </div>
@@ -154,7 +156,6 @@
 
   </div>
 </div>
-
 
 <body class="pytorch-body">
 

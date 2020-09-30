@@ -100,10 +100,6 @@
       a {
         color: $orange;
       }
-
-      .with-down-arrow {
-        background-image: url($baseurl + "/assets/images/chevron-down-orange.svg");
-      }
     }
 
     &:last-of-type {
@@ -113,7 +109,7 @@
 
   ul li a {
     color: $white;
-    font-size: 1.3rem;
+    font-size: rem(18px);
     letter-spacing: 0;
     line-height: rem(34px);
     text-align: center;
@@ -159,7 +155,7 @@
     padding: 0;
   }
 
-  ul li a, .resources-mobile-menu-title {
+  ul li a {
     font-size: rem(32px);
     color: $white;
     letter-spacing: 0;
@@ -195,4 +191,16 @@
   height: 100%;
   min-height: 100%;
   margin-top: -$mobile_header_height;
+}
+
+.with-down-arrow {
+  padding-right: rem(32px);
+  position: relative;
+  background-image: url($baseurl + "/assets/images/chevron-down-black.svg");
+  background-size: 14px 18px;
+  background-position: top 7px right 10px;
+  background-repeat: no-repeat;
+  &:hover {
+    background-image: url($baseurl + "/assets/images/chevron-down-orange.svg");
+  }
 }

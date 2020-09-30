@@ -252,8 +252,8 @@ if (downloadNote.length >= 1) {
 
     var githubLink = "https://github.com/pytorch/tutorials/blob/master/" + tutorialUrlArray.join("/") + ".py",
         notebookLink = $(".reference.download")[1].href,
-        notebookDownloadPath = notebookLink.split('_downloads')[1],
-        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads" + notebookDownloadPath;
+        notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop(),
+        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads/" + notebookDownloadPath;
 
     $("#google-colab-link").wrap("<a href=" + colabLink + " data-behavior='call-to-action-event' data-response='Run in Google Colab' target='_blank'/>");
     $("#download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook'/>");
@@ -262,30 +262,21 @@ if (downloadNote.length >= 1) {
     $(".pytorch-call-to-action-links").hide();
 }
 
-//This code makes the Notes section of the Docs Left Nav collapsible
+$("[data-toggle='resources-dropdown']").hover(function() {
+    toggleDropdown($(this).attr("data-toggle"));
+  });
 
-if ($("p.caption:first").text() == "Notes") {
+  function toggleDropdown(menuToggle) {
+    var showMenuClass = "show-menu";
+    var menuClass = "." + menuToggle + "-menu";
 
-    $("p.caption:first").addClass("left-nav-top-caption");
-    $("span.caption-text:first").after("<span class='expand-menu'>[Expand]</span>");
-    $(".expand-menu").after("<span class='hide-menu'>[Hide]</span>");
-    $("p.caption:first").next("ul").hide();
-
-    $(".expand-menu").on("click", function() {
-        $(".hide-menu").toggle();
-        toggleList(this);
-    });
-
-    $(".hide-menu").on("click", function() {
-        $(".expand-menu").toggle();
-        toggleList(this);
-    });
-
-    function toggleList(menuCommand) {
-        $(menuCommand).toggle();
-        $("p.caption:first").next("ul").toggle();
+    if ($(menuClass).hasClass(showMenuClass)) {
+      $(menuClass).removeClass(showMenuClass);
+    } else {
+      $("[data-toggle=" + menuToggle + "].show-menu").removeClass(showMenuClass);
+      $(menuClass).addClass(showMenuClass);
     }
-}
+  }
 
 // Get the card link from the card's link attribute
 
