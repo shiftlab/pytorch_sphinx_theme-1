@@ -11379,6 +11379,9 @@ a:hover {
 #tutorial-cards-container .tutorial-tags-container.active {
   width: 0;
 }
+#tutorial-cards-container .tutorial-filter-menu h3.tags-header {
+  margin-top: 0px;
+}
 #tutorial-cards-container .tutorial-filter-menu ul {
   list-style-type: none;
   padding-left: 1.25rem;
@@ -11431,6 +11434,29 @@ a:hover {
 }
 #tutorial-cards-container .pagination .active .page {
   background-color: #dee2e6;
+}
+#tutorial-cards-container .sort-menu {
+  padding-top: 20px;
+}
+#tutorial-cards-container .sort-menu a {
+  cursor: pointer;
+}
+#tutorial-cards-container .tutorials-sort-dropdown ul {
+  list-style-type: none;
+  padding-left: 1.25rem;
+}
+#tutorial-cards-container .tutorials-sort-dropdown ul li {
+  padding-right: 1.25rem;
+  word-break: break-all;
+}
+#tutorial-cards-container .tutorials-sort-dropdown ul li a {
+  color: #979797;
+}
+#tutorial-cards-container .tutorials-sort-dropdown ul li a:hover {
+  color: #e44c2c;
+}
+#tutorial-cards-container .tutorials-sort-dropdown ul li.level-filter-btn {
+  cursor: pointer;
 }
 
 article.pytorch-article .tutorials-callout-container {

@@ -150,7 +150,7 @@ $(function() {
 window.filterTags = {
   bind: function() {
     var options = {
-      valueNames: [{ data: ["tags"] }],
+      valueNames: [{ data: ["tags", "level"] }],
       page: "6",
       pagination: true
     };
@@ -206,6 +206,22 @@ window.filterTags = {
 
       updateList();
     });
+
+    // Filter the tutorial listings based on the selected level
+
+    $(".level-filter-btn").on("click", function () {
+      filterByLevel($(this).data("level"));
+    });
+
+    function filterByLevel(level) {
+      tutorialList.filter(function (item) {
+        if (item.values().level == level) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+    }
   }
 };
 
@@ -947,8 +963,8 @@ if (downloadNote.length >= 1) {
 
     var githubLink = "https://github.com/pytorch/tutorials/blob/master/" + tutorialUrlArray.join("/") + ".py",
         notebookLink = $(".reference.download")[1].href,
-        notebookDownloadPath = notebookLink.split('_downloads')[1],
-        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads" + notebookDownloadPath;
+        notebookDownloadPath = notebookLink.split('_downloads')[1].split('/').pop(),
+        colabLink = "https://colab.research.google.com/github/pytorch/tutorials/blob/gh-pages/_downloads/" + notebookDownloadPath;
 
     $("#google-colab-link").wrap("<a href=" + colabLink + " data-behavior='call-to-action-event' data-response='Run in Google Colab' target='_blank'/>");
     $("#download-notebook-link").wrap("<a href=" + notebookLink + " data-behavior='call-to-action-event' data-response='Download Notebook'/>");
@@ -1038,5 +1054,40 @@ $("#tutorial-cards p").each(function(index, item) {
         $(item).remove();
     }
 });
+
+// Jump back to top on pagination click
+
+$(document).on("click", ".page", function() {
+    $('html, body').animate(
+      {scrollTop: $("#dropdown-filter-tags").position().top},
+      'slow'
+    );
+});
+
+// Build an array from each level that's present
+
+var levelList = $(".tutorials-card-container").map(function() {
+    return $(this).data("level").split(",").map(function(item) {
+        return item.trim();
+      });
+}).get();
+
+function unique(value, index, self) {
+      return self.indexOf(value) == index && value != ""
+    }
+
+// Only return unique tags
+
+var levels = levelList.sort().filter(unique);
+
+// Add filter buttons to the top of the page for each tag
+
+function createLevelsMenu() {
+    levels.forEach(function(item){
+        $(".tutorials-sort-dropdown ul").append(" <li class='level-filter-btn' data-level='" + item + "'>" + item.toUpperCase() + "</div>")
+  })
+};
+
+createLevelsMenu();
 
 },{"jquery":"jquery"}]},{},[1,2,3,4,5,6,7,8,9,10,"pytorch-sphinx-theme"]);

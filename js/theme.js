@@ -373,8 +373,16 @@ var levels = levelList.sort().filter(unique);
 
 function createLevelsMenu() {
     levels.forEach(function(item){
-        $(".tutorials-sort-dropdown ul").append(" <li class='level-filter-btn' data-level='" + item + "'>" + item + "</div>")
+        $(".tutorials-sort-dropdown ul").append(" <li class='level-filter-btn' data-level='" + item + "'>" + convertToUpperCase(item) + "</div>")
   })
 };
+
+// Taken from https://stackoverflow.com/questions/5122402/uppercase-first-letter-of-variable
+
+function convertToUpperCase(str) {
+ str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+    return letter.toUpperCase();
+ });
+}
 
 createLevelsMenu();
