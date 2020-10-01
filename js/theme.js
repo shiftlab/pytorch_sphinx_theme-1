@@ -380,7 +380,7 @@ function createLevelsMenu() {
 // Taken from https://stackoverflow.com/questions/5122402/uppercase-first-letter-of-variable
 
 function convertToUpperCase(str) {
- str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
+ return str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
     return letter.toUpperCase();
  });
 }

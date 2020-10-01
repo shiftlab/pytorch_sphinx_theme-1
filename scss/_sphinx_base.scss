@@ -1173,6 +1173,16 @@ a:hover {
     a {
       cursor: pointer;
     }
+
+    #sort-menu-text {
+      padding-right: 25px;
+      background-image: url(../images/filter-arrow.svg);
+      background-repeat: no-repeat;
+      @include desktop {
+        background-position: 32px 9px;
+      }
+      background-position: 24px 6px;
+    }
   }
 
   .tutorials-sort-dropdown ul {
